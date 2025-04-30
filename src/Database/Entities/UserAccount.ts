@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Listing } from "./LIsting";
 
 @Entity()
 export class UserAccount {
@@ -20,4 +27,8 @@ export class UserAccount {
   balance!: number;
   @Column()
   location!: string;
+  //sets a one to many relationship with Listing
+  //one user has Many Listing
+  @OneToMany(() => Listing, (listing) => listing.user)
+  listing!: Listing;
 }
