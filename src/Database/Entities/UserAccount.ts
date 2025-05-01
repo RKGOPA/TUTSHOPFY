@@ -1,11 +1,18 @@
 import {
   Column,
   Entity,
+  ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Listing } from "./LIsting";
+import { Listing } from "./Listing";
+import { Review } from "./Review";
+import { Images } from "./Images";
+import { SocialAccount } from "./SocialAccount";
+import { Chat } from "./Chat";
+import { Order } from "./Order";
 
 @Entity()
 export class UserAccount {
@@ -22,6 +29,10 @@ export class UserAccount {
   @Column()
   password!: string;
   @Column()
+  verified!: boolean;
+  @Column()
+  has_social_account!: boolean;
+  @Column()
   phone_number!: string;
   @Column()
   balance!: number;
@@ -31,4 +42,15 @@ export class UserAccount {
   //one user has Many Listing
   @OneToMany(() => Listing, (listing) => listing.user)
   listing!: Listing;
+  @OneToMany(() => Review, (review) => review.user)
+  review!: Review;
+
+  @OneToOne(() => Images, (image) => image.user)
+  profile_pic!: Images;
+  @OneToOne(() => SocialAccount, (social) => social.user)
+  social_account!: SocialAccount;
+  @ManyToOne(() => Chat, (chat) => chat.user)
+  chat!: Chat;
+  @OneToMany(() => Order, (order) => order.user)
+  order!: Order;
 }
