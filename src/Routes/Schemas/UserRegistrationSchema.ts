@@ -9,6 +9,7 @@ export const registration_schema = Joi.object({
   phone_number: Joi.string().required(),
   location: Joi.string().required(),
 });
+
 export type registration_schema_type = {
   username: string;
   email: string;
@@ -16,3 +17,15 @@ export type registration_schema_type = {
   phone_number: string;
   location: string;
 };
+
+//listing
+export const listing_schema = Joi.object({
+  description: Joi.string().required(),
+  category: Joi.string().email().required(),
+  title: Joi.string().required(),
+  price: Joi.number().required(),
+  user_id: Joi.string().required(),
+  quantity: Joi.number().required(),
+  username: Joi.string().required(),
+  
+});
