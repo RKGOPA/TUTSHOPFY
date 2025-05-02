@@ -12,7 +12,7 @@ import { SocialAccount } from "../Entities/SocialAccount";
 export const APP_DATASOURCE = new DataSource({
   type: "mysql",
   host: "localhost",
-  password: "admin",
+  password: "",
   username: "root",
   database: "campus_plug",
   synchronize: true,
