@@ -9,3 +9,10 @@ export const registration_schema = Joi.object({
   phone_number: Joi.string().required(),
   location: Joi.string().required(),
 });
+export type registration_schema_type = {
+  username: string;
+  email: string;
+  password: string;
+  phone_number: string;
+  location: string;
+};

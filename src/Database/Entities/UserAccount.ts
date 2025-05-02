@@ -24,8 +24,8 @@ export class UserAccount {
   email!: string;
   @Column()
   userName!: string;
-  @Column()
-  verfication_email!: string;
+  @Column({ nullable: true })
+  verfication_email?: string;
   @Column()
   password!: string;
   @Column()
@@ -40,17 +40,17 @@ export class UserAccount {
   location!: string;
   //sets a one to many relationship with Listing
   //one user has Many Listing
-  @OneToMany(() => Listing, (listing) => listing.user)
-  listing!: Listing;
-  @OneToMany(() => Review, (review) => review.user)
-  review!: Review;
+  @OneToMany(() => Listing, (listing) => listing.user, { nullable: true })
+  listing?: Listing[];
+  @OneToMany(() => Review, (review) => review.user, { nullable: true })
+  review?: Review[];
 
-  @OneToOne(() => Images, (image) => image.user)
-  profile_pic!: Images;
-  @OneToOne(() => SocialAccount, (social) => social.user)
-  social_account!: SocialAccount;
-  @ManyToOne(() => Chat, (chat) => chat.user)
-  chat!: Chat;
-  @OneToMany(() => Order, (order) => order.user)
-  order!: Order;
+  @OneToOne(() => Images, (image) => image.user, { nullable: true })
+  profile_pic?: Images;
+  @OneToOne(() => SocialAccount, (social) => social.user, { nullable: true })
+  social_account?: SocialAccount;
+  @ManyToOne(() => Chat, (chat) => chat.user, { nullable: true })
+  chat?: Chat;
+  @OneToMany(() => Order, (order) => order.user, { nullable: true })
+  order?: Order[];
 }

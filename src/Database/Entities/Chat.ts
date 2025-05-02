@@ -16,7 +16,7 @@ export class Chat {
   @Column()
   receiver_id!: number;
   @OneToMany(() => Message, (message) => message.chat)
-  message!: Message;
+  message!: Message[];
   @OneToMany(() => UserAccount, (user) => user.chat)
-  user!: UserAccount;
+  user!: UserAccount[];
 }

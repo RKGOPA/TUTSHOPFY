@@ -28,7 +28,7 @@ APP_DATASOURCE.initialize()
 
     //listen for connection on all interfaces
     HttpServer.listen(3002, "0.0.0.0", () => {
-      console.log("serer is running on port 3002");
+      console.log("server is running on port 3002");
     });
   })
   .catch((err) => {
