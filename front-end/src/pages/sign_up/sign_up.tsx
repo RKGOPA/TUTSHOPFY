@@ -6,14 +6,11 @@ const Signup: React.FC = () => {
 
   const [form, setForm] = useState({
     email: "",
-    userName: "",
-    initials: "",
-    student_number: "",
+    username: "",
     password: "",
     confirm_password: "",
     phone_number: "",
-    course_code: "",
-    location: "South Campus", // Default value
+    location: "South Campus",
   });
 
   const handleChange = (
@@ -31,22 +28,31 @@ const Signup: React.FC = () => {
       return;
     }
 
+    // Prepare data to match Joi schema
+    const payload = {
+      username: form.username,
+      email: form.email,
+      password: form.password,
+      phone_number: form.phone_number,
+      location: form.location,
+    };
+
     try {
-      const res = await fetch("/api/user/signup", {
+      const res = await fetch("http://localhost:3002/api/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
-      if (data.success) {
+      if (res.ok) {
         alert("Signup successful!");
         navigate("/login");
       } else {
-        alert("Signup failed: " + data.message);
+        alert("Signup failed: " + (data.error || data.message));
       }
     } catch (err) {
       console.error("Signup error:", err);
@@ -76,33 +82,9 @@ const Signup: React.FC = () => {
             <input
               type="text"
               className="form-control"
-              name="userName"
+              name="username"
               required
-              value={form.userName}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-2">
-            <label>Initials</label>
-            <input
-              type="text"
-              className="form-control"
-              name="initials"
-              required
-              value={form.initials}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-2">
-            <label>Student Number</label>
-            <input
-              type="text"
-              className="form-control"
-              name="student_number"
-              required
-              value={form.student_number}
+              value={form.username}
               onChange={handleChange}
             />
           </div>
@@ -139,18 +121,6 @@ const Signup: React.FC = () => {
               name="phone_number"
               required
               value={form.phone_number}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-2">
-            <label>Course Code</label>
-            <input
-              type="text"
-              className="form-control"
-              name="course_code"
-              required
-              value={form.course_code}
               onChange={handleChange}
             />
           </div>
