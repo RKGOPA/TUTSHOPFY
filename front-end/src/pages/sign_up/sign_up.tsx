@@ -13,9 +13,12 @@ const Signup: React.FC = () => {
     confirm_password: "",
     phone_number: "",
     course_code: "",
+    location: "South Campus", // Default value
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
@@ -58,46 +61,120 @@ const Signup: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-2">
             <label>Email</label>
-            <input type="email" className="form-control" name="email" required value={form.email} onChange={handleChange} />
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Username</label>
-            <input type="text" className="form-control" name="userName" required value={form.userName} onChange={handleChange} />
+            <input
+              type="text"
+              className="form-control"
+              name="userName"
+              required
+              value={form.userName}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Initials</label>
-            <input type="text" className="form-control" name="initials" required value={form.initials} onChange={handleChange} />
+            <input
+              type="text"
+              className="form-control"
+              name="initials"
+              required
+              value={form.initials}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Student Number</label>
-            <input type="text" className="form-control" name="student_number" required value={form.student_number} onChange={handleChange} />
+            <input
+              type="text"
+              className="form-control"
+              name="student_number"
+              required
+              value={form.student_number}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Password</label>
-            <input type="password" className="form-control" name="password" required value={form.password} onChange={handleChange} />
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              required
+              value={form.password}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Confirm Password</label>
-            <input type="password" className="form-control" name="confirm_password" required value={form.confirm_password} onChange={handleChange} />
+            <input
+              type="password"
+              className="form-control"
+              name="confirm_password"
+              required
+              value={form.confirm_password}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-2">
             <label>Phone Number</label>
-            <input type="tel" className="form-control" name="phone_number" required value={form.phone_number} onChange={handleChange} />
+            <input
+              type="tel"
+              className="form-control"
+              name="phone_number"
+              required
+              value={form.phone_number}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="mb-2">
+            <label>Course Code</label>
+            <input
+              type="text"
+              className="form-control"
+              name="course_code"
+              required
+              value={form.course_code}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="mb-3">
-            <label>Course Code</label>
-            <input type="text" className="form-control" name="course_code" required value={form.course_code} onChange={handleChange} />
+            <label>Campus Location</label>
+            <select
+              className="form-control"
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+            >
+              <option value="South Campus">South Campus</option>
+              <option value="Main Campus">Main Campus</option>
+              <option value="Emalahleni Campus">Emalahleni Campus</option>
+              <option value="Arcadia Campus">Arcadia Campus</option>
+              <option value="Art Campus">Art Campus</option>
+            </select>
           </div>
 
           <div className="d-grid">
-            <button type="submit" className="btn btn-success">Sign Up</button>
+            <button type="submit" className="btn btn-success">
+              Sign Up
+            </button>
           </div>
 
           <div className="text-center mt-3">
